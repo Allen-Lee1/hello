@@ -16,3 +16,5 @@ jobs:
           cache: maven
       - name: Verify all modules
         run: mvn -B -ntp clean verify
+      - name: Smoke test executable jars
+        run: python3 scripts/smoke-test.py

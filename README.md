@@ -126,6 +126,6 @@ Controller 使用构造器注入 Service。业务失败可以抛出 `BusinessExc
 
 `mvn clean verify` 会运行两个应用的集成测试，覆盖正常接口、参数校验、错误状态、静态首页、健康检查及应用间路由隔离，然后生成两个可执行 jar。
 
-GitHub Actions 在 push 和 pull request 时使用 JDK 17 运行相同的构建命令。
+GitHub Actions 在 push 和 pull request 时使用 JDK 17 运行相同的构建命令，并实际启动两个可执行 jar，验证健康检查、GET/POST 接口、参数校验和中文首页。已安装 Python 3 时，也可以在构建后执行 `python scripts/smoke-test.py` 进行同样的运行检查，测试结束会自动停止应用。
 
 下一步可按业务需要添加数据库、登录认证、权限、接口文档等。当前项目是开发脚手架，尚未实现登录或访问控制；部署为正式业务服务前应补充相应功能。

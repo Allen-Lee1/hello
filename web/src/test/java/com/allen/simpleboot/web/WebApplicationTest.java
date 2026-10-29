@@ -1,14 +1,14 @@
 package com.allen.simpleboot.web;
 
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,7 +27,8 @@ class WebApplicationTest {
     @Test
     void welcomePageIsServed() throws Exception {
         mvc.perform(get("/index.html")).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Simple Boot 已启动")));
+                .andExpect(result -> assertThat(result.getResponse()
+                        .getContentAsString(StandardCharsets.UTF_8)).contains("Simple Boot 已启动"));
     }
 
     @Test
