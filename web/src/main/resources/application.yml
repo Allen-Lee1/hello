@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: simple-boot-web
+server:
+  port: ${WEB_PORT:8081}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
